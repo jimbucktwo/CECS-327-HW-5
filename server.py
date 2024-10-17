@@ -1,10 +1,20 @@
 import socket
-UDPSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-UDPSocket.bind(("localhost", 1024)) #arbitrary port
 
-valid = True
-while valid:
-    packetData, clientAddress = UDPSocket.recvfrom()
-    UDPSocket.sendto(bytearray(str(packetData), encoding="utf-8"), clientAddress)
 
-UDPSocket.close()
+TCPSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+TCPSocket.bind(('localhost', 1024)) 
+TCPSocket.listen(5)
+print("Server listening...")
+
+incomingSocket, incomingAdress = TCPSocket.accept()
+
+while True:
+    myData = incomingSocket.recv(1024).decode()
+    if myData:
+        print(f'Received "{myData}" from the client')
+        incomingSocket.sendall(myData.upper().encode())
+    else:
+        print("Done")
+        break
+
+incomingSocket.close()
