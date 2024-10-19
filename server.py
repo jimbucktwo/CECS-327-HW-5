@@ -1,10 +1,13 @@
 import socket
-
+import random
 
 TCPSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-TCPSocket.bind(('localhost', 1024)) 
+hostname = socket.gethostname()
+IPaddress = socket.gethostbyname(hostname)
+port = random.randint(1024, 49151)
+TCPSocket.bind((IPaddress, port)) 
 TCPSocket.listen(5)
-print("Server listening...")
+print(f"IP address of server : {IPaddress}\nPort Number : {port}\nServer listening...")
 
 incomingSocket, incomingAdress = TCPSocket.accept()
 
