@@ -1,1 +1,3 @@
 Intro to Networking Course: This lab is designed the model a simple client server program in which both sides are able to communicate via TCP.
+
+Instructions for Users: Open two terminals, one for the server and one for the client. Run both files by typing "python server.py" in the server terminal and "python client.py" in the client terminal. The server will display the corresponding IP address and port number for the client to use, and in the client terminal it will prompt the user to enter an IP address and a port number. Enter the corresponding IP address and port number, followed by the message you want to send to the server. The program will continue forever until the client does not want to send any more messages, pressing enter to escape the program.
